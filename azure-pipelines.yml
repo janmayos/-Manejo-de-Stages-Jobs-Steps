@@ -1,8 +1,3 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - master
 
@@ -10,5 +5,30 @@ pool:
   vmImage: ubuntu-latest
 
 stages:
-  - stage : BuildApp
-  - stage : DeployApp
+  - stage : BuildDev
+    displayName: Build for DEV
+    jobs:
+      - job: BuildMobileApp
+        displayName: Buld App for Mobile DEV
+      - job: BuildReactApp
+        displayName: Buld App for React DEV
+      - job: BuildNodeApp
+        displayName: Buld App for Node DEV
+  - stage : BuildStaging
+    displayName: Build for STAGING
+    jobs:
+      - job: BuildMobileApp
+        displayName: Buld App for Mobile STAGING
+      - job: BuildReactApp
+        displayName: Buld App for React STAGING
+      - job: BuildNodeApp
+        displayName: Buld App for Node STAGING
+  - stage: BuildProd
+    displayName: Build for PROD
+    jobs:
+      - job: BuildMobileApp
+        displayName: Buld App for Mobile PROD
+      - job: BuildReactApp
+        displayName: Buld App for React PROD
+      - job: BuildNodeApp
+        displayName: Buld App for Node PROD
