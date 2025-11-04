@@ -10,25 +10,74 @@ stages:
     jobs:
       - job: BuildMobileApp
         displayName: Buld App for Mobile DEV
+        steps:
+          - script: echo Bulding mobile application
+            displayName: Building mobile app
+          - script: echo Running unit test
+            displayName: Running unit test
+
       - job: BuildReactApp
         displayName: Buld App for React DEV
+        steps:
+          - script: echo Bulding react application
+            displayName: Building react app
+          - script: echo Running unit test
+            displayName: Running unit test
+
       - job: BuildNodeApp
         displayName: Buld App for Node DEV
+        steps:
+          - script: echo Bulding Node application
+            displayName: Building Node app
+          - script: echo Running unit test
+            displayName: Running unit test
+
   - stage : BuildStaging
     displayName: Build for STAGING
     jobs:
       - job: BuildMobileApp
         displayName: Buld App for Mobile STAGING
+        steps:
+          - script: echo Bulding mobile application
+            displayName: Building mobile app
+          - script: echo Running unit test
+            displayName: Running unit test
       - job: BuildReactApp
         displayName: Buld App for React STAGING
+        steps:
+          - script: echo Bulding react application
+            displayName: Building react app
+          - script: echo Running unit test
+            displayName: Running unit test
       - job: BuildNodeApp
         displayName: Buld App for Node STAGING
+        steps:
+          - script: echo Bulding Node application
+            displayName: Building Node app
+          - script: echo Running unit test
+            displayName: Running unit test
+
   - stage: BuildProd
     displayName: Build for PROD
     jobs:
       - job: BuildMobileApp
         displayName: Buld App for Mobile PROD
+        steps:
+          - script: echo Bulding mobile application
+            displayName: Building mobile app
+          - script: echo Running unit test
+            displayName: Running unit test
       - job: BuildReactApp
         displayName: Buld App for React PROD
+        steps:
+          - script: echo Bulding react application
+            displayName: Building react app
+          - script: echo Running unit test
+            displayName: Running unit test
       - job: BuildNodeApp
         displayName: Buld App for Node PROD
+        steps:
+          - script: echo Bulding Node application
+            displayName: Building Node app
+          - script: echo Running unit test
+            displayName: Running unit test
