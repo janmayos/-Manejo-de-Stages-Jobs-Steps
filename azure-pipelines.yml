@@ -17,6 +17,7 @@ stages:
             displayName: Running unit test
 
       - job: BuildReactApp
+        dependsOn: BuildMobileApp
         displayName: Buld App for React DEV
         steps:
           - script: echo Bulding react application
@@ -25,6 +26,7 @@ stages:
             displayName: Running unit test
 
       - job: BuildNodeApp
+        dependsOn: BuildReactApp
         displayName: Buld App for Node DEV
         steps:
           - script: echo Bulding Node application
@@ -33,6 +35,8 @@ stages:
             displayName: Running unit test
 
   - stage : BuildStaging
+    dependsOn: BuildDev
+    condition: succeeded('BuildDev')
     displayName: Build for STAGING
     jobs:
       - job: BuildMobileApp
@@ -43,6 +47,7 @@ stages:
           - script: echo Running unit test
             displayName: Running unit test
       - job: BuildReactApp
+        dependsOn: BuildMobileApp
         displayName: Buld App for React STAGING
         steps:
           - script: echo Bulding react application
@@ -50,6 +55,7 @@ stages:
           - script: echo Running unit test
             displayName: Running unit test
       - job: BuildNodeApp
+        dependsOn: BuildReactApp
         displayName: Buld App for Node STAGING
         steps:
           - script: echo Bulding Node application
@@ -58,6 +64,10 @@ stages:
             displayName: Running unit test
 
   - stage: BuildProd
+    dependsOn:
+      - BuildDev
+      - BuildStaging
+    condition: and(succeeded('BuildDev'),succeeded('BuildStaging'))
     displayName: Build for PROD
     jobs:
       - job: BuildMobileApp
@@ -68,6 +78,7 @@ stages:
           - script: echo Running unit test
             displayName: Running unit test
       - job: BuildReactApp
+        dependsOn: BuildMobileApp
         displayName: Buld App for React PROD
         steps:
           - script: echo Bulding react application
@@ -75,6 +86,7 @@ stages:
           - script: echo Running unit test
             displayName: Running unit test
       - job: BuildNodeApp
+        dependsOn: BuildReactApp
         displayName: Buld App for Node PROD
         steps:
           - script: echo Bulding Node application
